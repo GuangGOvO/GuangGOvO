@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="156" viewBox="0 0 960 156" role="img" aria-labelledby="title">
+  <title id="title">Contribution calendar pending</title>
+  <rect x="1" y="1" width="958" height="154" rx="16" fill="#161B22" stroke="#30363D" />
+  <text x="28" y="61" fill="#3FB950" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="14">$ contribution-calendar --public --period 365d</text>
+  <text x="28" y="100" fill="#8B949E" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="13">Calendar data will appear after the first successful GitHub API refresh.</text>
+</svg>

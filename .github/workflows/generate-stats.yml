@@ -1,0 +1,43 @@
+name: Generate GitHub analytics
+
+on:
+  schedule:
+    - cron: '27 2 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: profile-generated-assets-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Check out profile repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+
+      - name: Fetch public profile data
+        run: node scripts/fetch-github-data.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Generate local statistics cards
+        run: node scripts/generate-stats.mjs
+
+      - name: Validate generated assets
+        run: node scripts/validate-assets.mjs
+
+      - name: Commit changed analytics
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/generated/github-stats-dark.svg assets/generated/github-stats-light.svg assets/generated/github-stats-dark-static.svg assets/generated/github-stats-light-static.svg assets/generated/contribution-grid-dark.svg assets/generated/contribution-grid-light.svg assets/cache/github-data.json assets/cache/fetch-status.json
+          if git diff --cached --quiet; then
+            echo 'No analytics changes to commit.'
+          else
+            git commit -m 'chore(profile): refresh GitHub analytics'
+            git push
+          fi

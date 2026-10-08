@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="title">
+  <title id="title">Workspace logo</title>
+  <rect x="1" y="1" width="46" height="46" rx="12" fill="#F6F8FA" stroke="#D0D7DE" />
+  <text x="24" y="32" text-anchor="middle" fill="#1A7F37" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="22" font-weight="700">&gt;</text>
+  <circle cx="36" cy="13" r="2.5" fill="#0969DA"></circle>
+</svg>

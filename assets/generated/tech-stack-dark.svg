@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="156" viewBox="0 0 960 156" role="img" aria-labelledby="title">
+  <title id="title">Technology stack not configured</title>
+  <rect x="1" y="1" width="958" height="154" rx="16" fill="#161B22" stroke="#30363D" />
+  <text x="30" y="60" fill="#3FB950" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="14">$ cat ./tech-stack.json</text>
+  <text x="30" y="101" fill="#8B949E" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="14">Add only technologies you have actually used to profile.config.json.</text>
+</svg>

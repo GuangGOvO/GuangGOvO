@@ -1,0 +1,44 @@
+name: Generate contribution snake
+
+on:
+  schedule:
+    - cron: '37 2 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: profile-generated-assets-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Check out profile repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+
+      - name: Generate dark and light contribution SVGs
+        uses: Platane/snk@d8f6715049803e982ee5ff501b6b9b7d5deeb09b
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          github_token: ${{ github.token }}
+          outputs: |
+            assets/generated/contribution-snake-dark.svg?palette=github-dark&color_snake=%233FB950
+            assets/generated/contribution-snake-light.svg?palette=github-light&color_snake=%230969DA
+
+      - name: Validate generated assets
+        run: node scripts/validate-assets.mjs
+
+      - name: Commit changed contribution assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/generated/contribution-snake-dark.svg assets/generated/contribution-snake-light.svg
+          if git diff --cached --quiet; then
+            echo 'No contribution changes to commit.'
+          else
+            git commit -m 'chore(profile): refresh contribution animation'
+            git push
+          fi

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="170" viewBox="0 0 960 170" role="img" aria-labelledby="title desc">
+  <title id="title">Featured projects are not configured</title><desc id="desc">No repositories have been selected in profile.config.json.</desc>
+  <rect x="1" y="1" width="958" height="168" rx="16" fill="#161B22" stroke="#30363D" />
+  <text x="32" y="58" fill="#3FB950" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="14">$ ls ./featured-projects</text>
+  <text x="32" y="98" fill="#E6EDF3" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="17">No repositories selected</text>
+  <text x="32" y="129" fill="#8B949E" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="13">Add public owner/repository names to github.featuredRepositories.</text>
+</svg>

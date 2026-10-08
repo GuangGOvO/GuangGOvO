@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "github": {
+    "username": "GuangGOvO",
+    "featuredRepositories": []
+  },
+  "identity": {
+    "publicName": "",
+    "headline": "",
+    "bio": "",
+    "interests": [],
+    "currentResearch": [],
+    "website": "",
+    "contact": "",
+    "blog": ""
+  },
+  "hero": {
+    "tagline": "",
+    "typewriterLines": []
+  },
+  "technologyStack": {
+    "Languages": [],
+    "Frontend": [],
+    "Backend": [],
+    "Mobile": [],
+    "Embedded / IoT": [],
+    "DevOps / Linux": [],
+    "Tools": []
+  },
+  "brand": {
+    "name": "Workspace",
+    "mark": ">",
+    "colors": {
+      "dark": {
+        "background": "#0D1117",
+        "panel": "#161B22",
+        "border": "#30363D",
+        "text": "#E6EDF3",
+        "muted": "#8B949E",
+        "green": "#3FB950",
+        "blue": "#58A6FF",
+        "amber": "#D29922"
+      },
+      "light": {
+        "background": "#FFFFFF",
+        "panel": "#F6F8FA",
+        "border": "#D0D7DE",
+        "text": "#1F2328",
+        "muted": "#59636E",
+        "green": "#1A7F37",
+        "blue": "#0969DA",
+        "amber": "#9A6700"
+      }
+    }
+  },
+  "features": {
+    "animations": true,
+    "featuredProjects": true,
+    "githubStats": true,
+    "contributionSnake": true
+  },
+  "updates": {
+    "frequency": "daily",
+    "baseTimeUtc": "02:17"
+  }
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="286" viewBox="0 0 960 286" role="img" aria-labelledby="title desc">
+  <title id="title">Workspace terminal welcome</title>
+  <desc id="desc">Public profile details are added through configuration. Terminal-style welcome banner. A static fallback is available for reduced motion.</desc>
+  <rect width="960" height="286" rx="18" fill="#0D1117" />
+  <rect x="1" y="1" width="958" height="284" rx="17" fill="none" stroke="#30363D" />
+  <path d="M1 54h958" stroke="#30363D" />
+  <circle cx="27" cy="27" r="6" fill="#8B949E" opacity=".55" />
+  <circle cx="48" cy="27" r="6" fill="#8B949E" opacity=".55" />
+  <circle cx="69" cy="27" r="6" fill="#3FB950" />
+  <text x="90" y="32" fill="#8B949E" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="14">Workspace / profile</text>
+  <text x="42" y="94" fill="#3FB950" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15">guest@workspace:~$ ./welcome.sh</text>
+  <text x="42" y="151" fill="#E6EDF3" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="36" font-weight="700">Hello, World!</text>
+  <text x="42" y="188" fill="#58A6FF" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="16">&gt; Public profile details are added through configuration.</text>
+  <defs><clipPath id="typing-window"><rect x="41" y="205" width="0" height="23"><animate attributeName="width" values="0;474.3;474.3;0;0" keyTimes="0;0.48;0.76;0.96;1" dur="8s" repeatCount="indefinite" /></rect></clipPath></defs>
+  <text x="42" y="223" clip-path="url(#typing-window)" fill="#8B949E" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15">Configure profile.config.json to add a short intro.</text>
+  <rect x="42" y="207" width="8" height="18" rx="1" fill="#3FB950"><animate attributeName="opacity" values="0.25;1;0.25" dur="1.15s" repeatCount="indefinite" /><animate attributeName="x" values="42;520.3;520.3;42;42" keyTimes="0;0.48;0.76;0.96;1" dur="8s" repeatCount="indefinite" /></rect>
+  <text x="42" y="260" fill="#8B949E" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="12">SVG typewriter · prefers-reduced-motion uses the static image</text>
+</svg>

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GitHub Profile Workspace Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "github", "identity", "hero", "technologyStack", "brand", "features", "updates"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "github": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["username", "featuredRepositories"],
+      "properties": {
+        "username": { "type": "string", "maxLength": 39, "pattern": "^(?:|[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?)$" },
+        "featuredRepositories": { "type": "array", "maxItems": 6, "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?/[A-Za-z0-9_.-]{1,100}$" } }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["publicName", "headline", "bio", "interests", "currentResearch", "website", "contact", "blog"],
+      "properties": {
+        "publicName": { "type": "string", "maxLength": 80 },
+        "headline": { "type": "string", "maxLength": 120 },
+        "bio": { "type": "string", "maxLength": 500 },
+        "interests": { "type": "array", "maxItems": 12, "items": { "type": "string", "maxLength": 80 } },
+        "currentResearch": { "type": "array", "maxItems": 8, "items": { "type": "string", "maxLength": 120 } },
+        "website": { "type": "string", "maxLength": 200 },
+        "contact": { "type": "string", "maxLength": 200 },
+        "blog": { "type": "string", "maxLength": 200 }
+      }
+    },
+    "hero": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tagline", "typewriterLines"],
+      "properties": {
+        "tagline": { "type": "string", "maxLength": 180 },
+        "typewriterLines": { "type": "array", "maxItems": 4, "items": { "type": "string", "minLength": 1, "maxLength": 80 } }
+      }
+    },
+    "technologyStack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["Languages", "Frontend", "Backend", "Mobile", "Embedded / IoT", "DevOps / Linux", "Tools"],
+      "properties": {
+        "Languages": { "$ref": "#/$defs/technologyList" },
+        "Frontend": { "$ref": "#/$defs/technologyList" },
+        "Backend": { "$ref": "#/$defs/technologyList" },
+        "Mobile": { "$ref": "#/$defs/technologyList" },
+        "Embedded / IoT": { "$ref": "#/$defs/technologyList" },
+        "DevOps / Linux": { "$ref": "#/$defs/technologyList" },
+        "Tools": { "$ref": "#/$defs/technologyList" }
+      }
+    },
+    "brand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "mark", "colors"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "mark": { "type": "string", "minLength": 1, "maxLength": 4 },
+        "colors": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["dark", "light"],
+          "properties": {
+            "dark": { "$ref": "#/$defs/palette" },
+            "light": { "$ref": "#/$defs/palette" }
+          }
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["animations", "featuredProjects", "githubStats", "contributionSnake"],
+      "properties": {
+        "animations": { "type": "boolean" },
+        "featuredProjects": { "type": "boolean" },
+        "githubStats": { "type": "boolean" },
+        "contributionSnake": { "type": "boolean" }
+      }
+    },
+    "updates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frequency", "baseTimeUtc"],
+      "properties": {
+        "frequency": { "const": "daily" },
+        "baseTimeUtc": { "type": "string", "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9]$" }
+      }
+    }
+  },
+  "$defs": {
+    "technologyList": { "type": "array", "maxItems": 12, "items": { "type": "string", "minLength": 1, "maxLength": 40 } },
+    "palette": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["background", "panel", "border", "text", "muted", "green", "blue", "amber"],
+      "properties": {
+        "background": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "panel": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "border": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "text": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "muted": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "green": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "blue": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "amber": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
+      }
+    }
+  }
+}
