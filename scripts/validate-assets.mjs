@@ -1,5 +1,6 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { loadConfig, ROOT } from './lib/config.mjs';
 
@@ -92,12 +93,19 @@ async function validateMarkdownLinks(markdown, markdownPath) {
   const htmlTargets = [...markdown.matchAll(/(?:src|href|srcset)="([^"]+)"/g)].flatMap((match) => match[1].split(',').map((item) => item.trim().split(/\s+/)[0]));
   for (const target of [...markdownTargets, ...htmlTargets]) {
     if (/^(?:https?:|mailto:|#|data:|javascript:)/i.test(target)) continue;
-    const withoutFragment = decodeURIComponent(target.split(/[?#]/, 1)[0]);
+    const [targetPath, query = ''] = target.split('?', 2);
+    const withoutFragment = decodeURIComponent(targetPath.split('#', 1)[0]);
     if (!withoutFragment) continue;
+    const resolvedPath = path.resolve(fileDirectory, withoutFragment);
     try {
-      await stat(path.resolve(fileDirectory, withoutFragment));
+      await stat(resolvedPath);
     } catch {
       throw new Error(`${path.relative(ROOT, markdownPath)} references a missing local file: ${target}`);
+    }
+    if (withoutFragment.startsWith('assets/') && withoutFragment.toLowerCase().endsWith('.svg')) {
+      const expected = createHash('sha256').update(await readFile(resolvedPath)).digest('hex').slice(0, 12);
+      const actual = new URLSearchParams(query).get('v');
+      if (actual !== expected) throw new Error(`${path.relative(ROOT, markdownPath)} has a stale SVG cache version for ${withoutFragment}.`);
     }
   }
 }

@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { loadConfig, resolveUsername, ROOT } from './lib/config.mjs';
 import { readJson } from './lib/files.mjs';
+import { updateReadme } from './lib/markdown.mjs';
 import { loadCache, renderContributionGrid, renderStats, writeSvg } from './lib/svg.mjs';
 
 const config = await loadConfig();
@@ -20,4 +21,5 @@ await Promise.all([
   writeSvg(path.join(ROOT, 'assets/generated/contribution-grid-dark.svg'), renderContributionGrid(config, cache.contributions, 'dark')),
   writeSvg(path.join(ROOT, 'assets/generated/contribution-grid-light.svg'), renderContributionGrid(config, cache.contributions, 'light'))
 ]);
+await updateReadme(config, { cache, username });
 console.log(`Generated public analytics for ${username || 'an unconfigured profile'}.`);

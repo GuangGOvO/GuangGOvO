@@ -34,7 +34,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/generated/github-stats-dark.svg assets/generated/github-stats-light.svg assets/generated/github-stats-dark-static.svg assets/generated/github-stats-light-static.svg assets/generated/contribution-grid-dark.svg assets/generated/contribution-grid-light.svg assets/cache/github-data.json assets/cache/fetch-status.json
+          git add README.md assets/generated/github-stats-dark.svg assets/generated/github-stats-light.svg assets/generated/github-stats-dark-static.svg assets/generated/github-stats-light-static.svg assets/generated/contribution-grid-dark.svg assets/generated/contribution-grid-light.svg assets/cache/github-data.json assets/cache/fetch-status.json
           if git diff --cached --quiet; then
             echo 'No analytics changes to commit.'
           else

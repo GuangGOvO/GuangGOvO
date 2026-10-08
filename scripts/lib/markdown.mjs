@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { ROOT } from './config.mjs';
 import { writeAtomicIfChanged } from './files.mjs';
 
@@ -8,15 +9,17 @@ export async function updateReadme(config, data = {}) {
   const username = data.username || config.github.username || process.env.GITHUB_REPOSITORY_OWNER || '';
   const cache = data.cache ?? { username: '', repositories: null, featuredProjects: null, contributions: null };
   const projectMap = new Map((cache.username?.toLowerCase() === username.toLowerCase() ? cache.featuredProjects ?? [] : []).map((repo) => [repo.fullName.toLowerCase(), repo]));
+  const versions = await loadAssetVersions();
   let markdown = await readFile(readmePath, 'utf8');
   const blocks = {
     brand: `<strong>${escapeHtml(config.brand.name)}</strong>`,
-    hero: renderHeroBlock(config),
-    about: renderAboutBlock(config),
-    stack: renderStackBlock(config),
-    projects: renderProjectsBlock(config, projectMap),
-    analytics: renderAnalyticsBlock(config),
-    snake: renderSnakeBlock(config),
+    'brand-logo': renderBrandLogoBlock(config, versions),
+    hero: renderHeroBlock(config, versions),
+    about: renderAboutBlock(config, versions),
+    stack: renderStackBlock(config, versions),
+    projects: renderProjectsBlock(config, projectMap, versions),
+    analytics: renderAnalyticsBlock(config, versions),
+    snake: renderSnakeBlock(config, versions),
     connect: renderConnectBlock(config, username)
   };
   for (const [name, content] of Object.entries(blocks)) markdown = replaceGeneratedBlock(markdown, name, content);
@@ -35,19 +38,57 @@ function replaceGeneratedBlock(markdown, name, content) {
   return `${markdown.slice(0, startIndex)}\n${content.trim()}\n${markdown.slice(endIndex)}`;
 }
 
-function renderHeroBlock(config) {
+async function loadAssetVersions() {
+  const paths = [
+    'assets/brand/logo-dark.svg', 'assets/brand/logo-light.svg',
+    'assets/brand/logo-dark-static.svg', 'assets/brand/logo-light-static.svg',
+    'assets/generated/hero-dark.svg', 'assets/generated/hero-light.svg',
+    'assets/generated/hero-dark-static.svg', 'assets/generated/hero-light-static.svg',
+    'assets/generated/profile-status-dark.svg', 'assets/generated/profile-status-light.svg',
+    'assets/generated/profile-status-dark-static.svg', 'assets/generated/profile-status-light-static.svg',
+    'assets/generated/tech-stack-dark.svg', 'assets/generated/tech-stack-light.svg',
+    'assets/generated/featured-projects-dark.svg', 'assets/generated/featured-projects-light.svg',
+    'assets/generated/github-stats-dark.svg', 'assets/generated/github-stats-light.svg',
+    'assets/generated/github-stats-dark-static.svg', 'assets/generated/github-stats-light-static.svg',
+    'assets/generated/contribution-grid-dark.svg', 'assets/generated/contribution-grid-light.svg',
+    'assets/generated/contribution-snake-dark.svg', 'assets/generated/contribution-snake-light.svg'
+  ];
+  const versions = {};
+  for (const relativePath of paths) {
+    const bytes = await readFile(path.join(ROOT, relativePath));
+    versions[relativePath] = createHash('sha256').update(bytes).digest('hex').slice(0, 12);
+  }
+  return versions;
+}
+
+function asset(pathName, versions) {
+  return `${pathName}?v=${versions[pathName]}`;
+}
+
+function renderBrandLogoBlock(config, versions) {
+  const darkImage = config.features.animations ? 'assets/brand/logo-dark.svg' : 'assets/brand/logo-dark-static.svg';
+  const lightImage = config.features.animations ? 'assets/brand/logo-light.svg' : 'assets/brand/logo-light-static.svg';
+  return `<picture>
+  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="${asset('assets/brand/logo-dark-static.svg', versions)}" />
+  <source media="(prefers-reduced-motion: reduce)" srcset="${asset('assets/brand/logo-light-static.svg', versions)}" />
+  <source media="(prefers-color-scheme: dark)" srcset="${asset(darkImage, versions)}" />
+  <img src="${asset(lightImage, versions)}" alt="Terminal workspace logo" width="48" height="48" />
+</picture>`;
+}
+
+function renderHeroBlock(config, versions) {
   const animations = config.features.animations;
   return `<p align="center">
   <picture>
-    <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/hero-dark-static.svg" />
-    <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/hero-light-static.svg" />
-    <source media="(prefers-color-scheme: dark)" srcset="assets/generated/${animations ? 'hero-dark.svg' : 'hero-dark-static.svg'}" />
-    <img src="assets/generated/${animations ? 'hero-light.svg' : 'hero-light-static.svg'}" alt="Terminal welcome banner" width="960" />
+    <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="${asset('assets/generated/hero-dark-static.svg', versions)}" />
+    <source media="(prefers-reduced-motion: reduce)" srcset="${asset('assets/generated/hero-light-static.svg', versions)}" />
+    <source media="(prefers-color-scheme: dark)" srcset="${asset(`assets/generated/${animations ? 'hero-dark.svg' : 'hero-dark-static.svg'}`, versions)}" />
+    <img src="${asset(`assets/generated/${animations ? 'hero-light.svg' : 'hero-light-static.svg'}`, versions)}" alt="Terminal welcome banner" width="960" />
   </picture>
 </p>`;
 }
 
-function renderAboutBlock(config) {
+function renderAboutBlock(config, versions) {
   const identity = config.identity;
   const lines = [];
   if (identity.publicName) lines.push(`**${md(identity.publicName)}**`);
@@ -56,17 +97,17 @@ function renderAboutBlock(config) {
   if (identity.interests.length) lines.push(`- **Interests:** ${identity.interests.map(md).join(' · ')}`);
   if (identity.currentResearch.length) lines.push(`- **Current research:** ${identity.currentResearch.map(md).join(' · ')}`);
   if (!lines.length) lines.push('_Profile details are intentionally unconfigured. Add only information you want to share publicly in `profile.config.json`._');
-  lines.push('', `<picture>\n  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/profile-status-dark-static.svg" />\n  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/profile-status-light-static.svg" />\n  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/profile-status-dark.svg" />\n  <img src="assets/generated/profile-status-light.svg" alt="Profile data refresh status" width="960" />\n</picture>`);
+  lines.push('', `<picture>\n  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="${asset('assets/generated/profile-status-dark-static.svg', versions)}" />\n  <source media="(prefers-reduced-motion: reduce)" srcset="${asset('assets/generated/profile-status-light-static.svg', versions)}" />\n  <source media="(prefers-color-scheme: dark)" srcset="${asset('assets/generated/profile-status-dark.svg', versions)}" />\n  <img src="${asset('assets/generated/profile-status-light.svg', versions)}" alt="Profile data refresh status" width="960" />\n</picture>`);
   return lines.join('\n');
 }
 
-function renderStackBlock(config) {
-  return `<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/tech-stack-dark.svg" />\n  <img src="assets/generated/tech-stack-light.svg" alt="Configured technology stack" width="960" />\n</picture>`;
+function renderStackBlock(config, versions) {
+  return `<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="${asset('assets/generated/tech-stack-dark.svg', versions)}" />\n  <img src="${asset('assets/generated/tech-stack-light.svg', versions)}" alt="Configured technology stack" width="960" />\n</picture>`;
 }
 
-function renderProjectsBlock(config, projectMap) {
+function renderProjectsBlock(config, projectMap, versions) {
   if (!config.features.featuredProjects) return '_Featured projects are disabled in `profile.config.json`._';
-  const lines = [`<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/featured-projects-dark.svg" />\n  <img src="assets/generated/featured-projects-light.svg" alt="Featured public repositories" width="960" />\n</picture>`];
+  const lines = [`<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="${asset('assets/generated/featured-projects-dark.svg', versions)}" />\n  <img src="${asset('assets/generated/featured-projects-light.svg', versions)}" alt="Featured public repositories" width="960" />\n</picture>`];
   for (const fullName of config.github.featuredRepositories) {
     const repo = projectMap.get(fullName.toLowerCase());
     const suffix = repo ? ` — ${md(repo.language || 'language not reported')} · ★ ${Number.isSafeInteger(repo.stars) ? repo.stars : 0}` : '';
@@ -76,30 +117,30 @@ function renderProjectsBlock(config, projectMap) {
   return lines.join('\n');
 }
 
-function renderAnalyticsBlock(config) {
+function renderAnalyticsBlock(config, versions) {
   if (!config.features.githubStats) return '_GitHub analytics are disabled in `profile.config.json`._';
   return `<picture>
-  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/github-stats-dark-static.svg" />
-  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/github-stats-light-static.svg" />
-  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/github-stats-dark.svg" />
-  <img src="assets/generated/github-stats-light.svg" alt="Public repository statistics" width="960" />
+  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="${asset('assets/generated/github-stats-dark-static.svg', versions)}" />
+  <source media="(prefers-reduced-motion: reduce)" srcset="${asset('assets/generated/github-stats-light-static.svg', versions)}" />
+  <source media="(prefers-color-scheme: dark)" srcset="${asset('assets/generated/github-stats-dark.svg', versions)}" />
+  <img src="${asset('assets/generated/github-stats-light.svg', versions)}" alt="Public repository statistics" width="960" />
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/contribution-grid-dark.svg" />
-  <img src="assets/generated/contribution-grid-light.svg" alt="Public contribution calendar for the past 365 days" width="960" />
+  <source media="(prefers-color-scheme: dark)" srcset="${asset('assets/generated/contribution-grid-dark.svg', versions)}" />
+  <img src="${asset('assets/generated/contribution-grid-light.svg', versions)}" alt="Public contribution calendar for the past 365 days" width="960" />
 </picture>
 
 _Contribution total follows GitHub's public contribution calendar; languages are ranked by each repository's primary language._`;
 }
 
-function renderSnakeBlock(config) {
+function renderSnakeBlock(config, versions) {
   if (!config.features.contributionSnake) return '_The contribution snake is disabled in `profile.config.json`._';
   return `<picture>
-  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/contribution-grid-dark.svg" />
-  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/contribution-grid-light.svg" />
-  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/contribution-snake-dark.svg" />
-  <img src="assets/generated/contribution-snake-light.svg" alt="Animated snake built from the public contribution calendar" width="960" />
+  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="${asset('assets/generated/contribution-grid-dark.svg', versions)}" />
+  <source media="(prefers-reduced-motion: reduce)" srcset="${asset('assets/generated/contribution-grid-light.svg', versions)}" />
+  <source media="(prefers-color-scheme: dark)" srcset="${asset('assets/generated/contribution-snake-dark.svg', versions)}" />
+  <img src="${asset('assets/generated/contribution-snake-light.svg', versions)}" alt="Animated snake built from the public contribution calendar" width="960" />
 </picture>
 
 _If the animation has not been generated yet, this image shows a static setup message._`;

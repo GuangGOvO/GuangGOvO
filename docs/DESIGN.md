@@ -28,6 +28,7 @@ The README uses `<picture>` with a dark-mode source and a light-mode fallback. H
 - User/config/API text is XML-escaped, length-bounded, and inserted into text nodes only.
 - The output is assembled from local shapes and text. Scripts, `<foreignObject>`, remote images, event handlers, and user-provided SVG fragments are rejected.
 - Images use a 960-pixel canvas and scale through their `viewBox`; project lists and technology chips grow vertically instead of forcing a narrow Markdown table.
+- README image URLs carry a SHA-256 content version so refreshed SVGs do not remain hidden behind a cached image URL.
 - `assets/generated/contribution-grid-*.svg` is the static contribution fallback. `assets/generated/contribution-snake-*.svg` begins as a valid setup illustration and is replaced only after a successful snake generation.
 
 ## Motion

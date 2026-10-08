@@ -34,7 +34,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add README.md assets/brand assets/generated/hero-dark.svg assets/generated/hero-light.svg assets/generated/hero-dark-static.svg assets/generated/hero-light-static.svg assets/generated/featured-projects-dark.svg assets/generated/featured-projects-light.svg assets/generated/tech-stack-dark.svg assets/generated/tech-stack-light.svg assets/generated/profile-status-dark.svg assets/generated/profile-status-light.svg assets/generated/profile-status-dark-static.svg assets/generated/profile-status-light-static.svg assets/cache/github-data.json assets/cache/fetch-status.json
+          git add README.md assets/brand assets/generated/hero-dark.svg assets/generated/hero-light.svg assets/generated/hero-dark-static.svg assets/generated/hero-light-static.svg assets/generated/featured-projects-dark.svg assets/generated/featured-projects-light.svg assets/generated/tech-stack-dark.svg assets/generated/tech-stack-light.svg assets/generated/profile-status-dark.svg assets/generated/profile-status-light.svg assets/generated/profile-status-dark-static.svg assets/generated/profile-status-light-static.svg assets/generated/github-stats-dark.svg assets/generated/github-stats-light.svg assets/generated/github-stats-dark-static.svg assets/generated/github-stats-light-static.svg assets/generated/contribution-grid-dark.svg assets/generated/contribution-grid-light.svg assets/cache/github-data.json assets/cache/fetch-status.json
           if git diff --cached --quiet; then
             echo 'No profile changes to commit.'
           else

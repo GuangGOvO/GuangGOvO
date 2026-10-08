@@ -27,6 +27,7 @@ The README contains small generated blocks between named HTML comments. The gene
 - `assets/cache/fetch-status.json` records refresh outcome and a short, sanitized error label so the SVG can explain stale or unavailable data.
 - `scripts/lib/svg.mjs` builds standalone, self-contained SVGs from fixed shapes and escaped text. It does not embed JavaScript, foreign objects, remote fonts, or remote images.
 - `scripts/lib/markdown.mjs` updates the marked README blocks and uses links only for configured HTTPS URLs and validated GitHub repository names.
+- Image URLs in those blocks include a short SHA-256 content version, so GitHub's image proxy requests a new URL when an SVG changes.
 - `scripts/validate-assets.mjs` parses the configuration and generated SVG XML, checks README image references, rejects unsafe embedded content, and scans project sources for token-shaped strings.
 - `scripts/validate-workflows.py` parses the three workflow files and checks their triggers, jobs, and pinned action references. It uses Python 3 and PyYAML.
 
