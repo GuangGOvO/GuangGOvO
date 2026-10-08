@@ -202,7 +202,8 @@ export function renderStats(config, cache, theme, fetchStatus, animated = true) 
   const cards = values.map((item, index) => {
     const x = 18 + index * 314;
     const pulse = animated ? '<animate attributeName="opacity" values=".3;.8;.3" dur="3s" repeatCount="indefinite" />' : '';
-    return `  <g><rect x="${x}" y="24" width="294" height="112" rx="14" fill="${colors.background}" stroke="${colors.border}"/><circle cx="${x + 270}" cy="43" r="3" fill="${colors.green}">${pulse}</circle><text x="${x + 18}" y="54" fill="${colors.muted}" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11">${xml(item.label)}</text><text x="${x + 18}" y="98" fill="${colors.text}" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="${item.value.length > 20 ? 15 : 27}" font-weight="700">${xml(shortText(item.value, 26))}</text></g>`;
+    const compact = item.value.length > 20;
+    return `  <g><rect x="${x}" y="24" width="294" height="112" rx="14" fill="${colors.background}" stroke="${colors.border}"/><circle cx="${x + 270}" cy="43" r="3" fill="${colors.green}">${pulse}</circle><text x="${x + 18}" y="54" fill="${colors.muted}" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11">${xml(item.label)}</text><text x="${x + 18}" y="98" fill="${colors.text}" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="${compact ? 13 : 27}" font-weight="700">${xml(shortText(item.value, 32))}</text></g>`;
   }).join('\n');
   const note = unavailable
     ? error ? 'GitHub API unavailable · no previous data was replaced' : cache?.username ? 'No cached data yet · refresh this profile after publishing it' : 'Set the profile username to load public repository data'

@@ -143,7 +143,7 @@ function renderSnakeBlock(config, versions) {
   <img src="${asset('assets/generated/contribution-snake-light.svg', versions)}" alt="Animated snake built from the public contribution calendar" width="960" />
 </picture>
 
-_If the animation has not been generated yet, this image shows a static setup message._`;
+_The static contribution calendar is used when reduced motion is requested._`;
 }
 
 function renderConnectBlock(config, username) {
