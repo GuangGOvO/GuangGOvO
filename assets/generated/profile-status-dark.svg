@@ -2,6 +2,6 @@
   <title id="title">Profile update status</title>
   <rect x="1" y="1" width="958" height="86" rx="14" fill="#161B22" stroke="#30363D" />
   <circle cx="30" cy="31" r="5" fill="#3FB950"><animate attributeName="opacity" values=".35;.9;.35" dur="2.4s" repeatCount="indefinite" /></circle>
-  <text x="48" y="36" fill="#E6EDF3" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15">waiting for the first data refresh</text>
-  <text x="28" y="66" fill="#8B949E" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="13">Public GitHub data appears after the first successful refresh</text>
+  <text x="48" y="36" fill="#E6EDF3" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15">profile data: ready</text>
+  <text x="28" y="66" fill="#8B949E" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="13">8 public repositories available</text>
 </svg>
