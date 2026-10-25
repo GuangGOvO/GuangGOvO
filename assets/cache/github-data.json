@@ -20,28 +20,14 @@
         "repositoryCount": 1
       }
     ],
-    "fetchedAt": "2026-10-24T07:27:03.437Z"
+    "fetchedAt": "2026-10-25T07:34:49.288Z"
   },
   "featuredProjects": [],
   "contributions": {
     "total": 27,
-    "from": "2025-10-24",
-    "to": "2026-10-24",
+    "from": "2025-10-25",
+    "to": "2026-10-25",
     "weeks": [
-      {
-        "contributionDays": [
-          {
-            "date": "2025-10-24",
-            "contributionCount": 0,
-            "contributionLevel": "NONE"
-          },
-          {
-            "date": "2025-10-25",
-            "contributionCount": 0,
-            "contributionLevel": "NONE"
-          }
-        ]
-      },
       {
         "contributionDays": [
           {
@@ -2069,8 +2055,17 @@
             "contributionLevel": "NONE"
           }
         ]
+      },
+      {
+        "contributionDays": [
+          {
+            "date": "2026-10-25",
+            "contributionCount": 0,
+            "contributionLevel": "NONE"
+          }
+        ]
       }
     ],
-    "fetchedAt": "2026-10-24T07:27:03.437Z"
+    "fetchedAt": "2026-10-25T07:34:49.288Z"
   }
 }
