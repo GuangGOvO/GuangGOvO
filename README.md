@@ -76,8 +76,8 @@ _Contribution total follows GitHub's public contribution calendar; languages are
 <picture>
   <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/contribution-grid-dark.svg?v=f00eefce698a" />
   <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/contribution-grid-light.svg?v=ba12742d22d0" />
-  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/contribution-snake-dark.svg?v=9a51cb04ee86" />
-  <img src="assets/generated/contribution-snake-light.svg?v=afa1dea21e51" alt="Animated snake built from the public contribution calendar" width="960" />
+  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/contribution-snake-dark.svg?v=61643ba4e05e" />
+  <img src="assets/generated/contribution-snake-light.svg?v=da2bb4f0bfa6" alt="Animated snake built from the public contribution calendar" width="960" />
 </picture>
 
 _The static contribution calendar is used when reduced motion is requested._
