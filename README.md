@@ -57,15 +57,15 @@ _Choose up to six real public repositories in `profile.config.json`._
 ## GitHub Analytics
 <!-- profile:analytics:start -->
 <picture>
-  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/github-stats-dark-static.svg?v=49eaf86ce4d4" />
-  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/github-stats-light-static.svg?v=b61630504d2c" />
-  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/github-stats-dark.svg?v=33883faffbb1" />
-  <img src="assets/generated/github-stats-light.svg?v=1a07ebaef40b" alt="Public repository statistics" width="960" />
+  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/github-stats-dark-static.svg?v=1c950fa54847" />
+  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/github-stats-light-static.svg?v=7e10c55e0878" />
+  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/github-stats-dark.svg?v=62a0ab04efe7" />
+  <img src="assets/generated/github-stats-light.svg?v=4f24555fbdda" alt="Public repository statistics" width="960" />
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/contribution-grid-dark.svg?v=bfe0bbc6cc42" />
-  <img src="assets/generated/contribution-grid-light.svg?v=f3f11ea384f3" alt="Public contribution calendar for the past 365 days" width="960" />
+  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/contribution-grid-dark.svg?v=5fb2540d9a6d" />
+  <img src="assets/generated/contribution-grid-light.svg?v=14355423c607" alt="Public contribution calendar for the past 365 days" width="960" />
 </picture>
 
 _Contribution total follows GitHub's public contribution calendar; languages are ranked by each repository's primary language._
@@ -74,8 +74,8 @@ _Contribution total follows GitHub's public contribution calendar; languages are
 ## Contribution Animation
 <!-- profile:snake:start -->
 <picture>
-  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/contribution-grid-dark.svg?v=bfe0bbc6cc42" />
-  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/contribution-grid-light.svg?v=f3f11ea384f3" />
+  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/contribution-grid-dark.svg?v=5fb2540d9a6d" />
+  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/contribution-grid-light.svg?v=14355423c607" />
   <source media="(prefers-color-scheme: dark)" srcset="assets/generated/contribution-snake-dark.svg?v=d1139bfd882e" />
   <img src="assets/generated/contribution-snake-light.svg?v=ec53e87114c2" alt="Animated snake built from the public contribution calendar" width="960" />
 </picture>
