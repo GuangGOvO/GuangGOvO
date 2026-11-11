@@ -29,10 +29,10 @@
 _Profile details are intentionally unconfigured. Add only information you want to share publicly in `profile.config.json`._
 
 <picture>
-  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/profile-status-dark-static.svg?v=c13051be205f" />
-  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/profile-status-light-static.svg?v=936fd6b9950d" />
-  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/profile-status-dark.svg?v=cfa8429eed02" />
-  <img src="assets/generated/profile-status-light.svg?v=961199d254e0" alt="Profile data refresh status" width="960" />
+  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/profile-status-dark-static.svg?v=93886bfcacac" />
+  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/profile-status-light-static.svg?v=098f5722129a" />
+  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/profile-status-dark.svg?v=c88c3c0d590e" />
+  <img src="assets/generated/profile-status-light.svg?v=4552f7c6357d" alt="Profile data refresh status" width="960" />
 </picture>
 <!-- profile:about:end -->
 
@@ -57,15 +57,15 @@ _Choose up to six real public repositories in `profile.config.json`._
 ## GitHub Analytics
 <!-- profile:analytics:start -->
 <picture>
-  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/github-stats-dark-static.svg?v=1befac0d82d1" />
-  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/github-stats-light-static.svg?v=6161d4cb1cbe" />
-  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/github-stats-dark.svg?v=d83a0f4eeb97" />
-  <img src="assets/generated/github-stats-light.svg?v=12b4dfc4994d" alt="Public repository statistics" width="960" />
+  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/github-stats-dark-static.svg?v=1a992d8a9ed4" />
+  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/github-stats-light-static.svg?v=618094d0c40a" />
+  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/github-stats-dark.svg?v=a7b3ad73e0f1" />
+  <img src="assets/generated/github-stats-light.svg?v=ed8f67473e40" alt="Public repository statistics" width="960" />
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/contribution-grid-dark.svg?v=2af94f14b415" />
-  <img src="assets/generated/contribution-grid-light.svg?v=f3fc9f0863ea" alt="Public contribution calendar for the past 365 days" width="960" />
+  <source media="(prefers-color-scheme: dark)" srcset="assets/generated/contribution-grid-dark.svg?v=c3389c9be7d6" />
+  <img src="assets/generated/contribution-grid-light.svg?v=285155baa174" alt="Public contribution calendar for the past 365 days" width="960" />
 </picture>
 
 _Contribution total follows GitHub's public contribution calendar; languages are ranked by each repository's primary language._
@@ -74,8 +74,8 @@ _Contribution total follows GitHub's public contribution calendar; languages are
 ## Contribution Animation
 <!-- profile:snake:start -->
 <picture>
-  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/contribution-grid-dark.svg?v=2af94f14b415" />
-  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/contribution-grid-light.svg?v=f3fc9f0863ea" />
+  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/generated/contribution-grid-dark.svg?v=c3389c9be7d6" />
+  <source media="(prefers-reduced-motion: reduce)" srcset="assets/generated/contribution-grid-light.svg?v=285155baa174" />
   <source media="(prefers-color-scheme: dark)" srcset="assets/generated/contribution-snake-dark.svg?v=2c5d335dc253" />
   <img src="assets/generated/contribution-snake-light.svg?v=f6cf1aeef475" alt="Animated snake built from the public contribution calendar" width="960" />
 </picture>

@@ -3,5 +3,5 @@
   <rect x="1" y="1" width="958" height="86" rx="14" fill="#F6F8FA" stroke="#D0D7DE" />
   <circle cx="30" cy="31" r="5" fill="#1A7F37"></circle>
   <text x="48" y="36" fill="#1F2328" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15">profile data: ready</text>
-  <text x="28" y="66" fill="#59636E" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="13">8 public repositories available</text>
+  <text x="28" y="66" fill="#59636E" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="13">9 public repositories available</text>
 </svg>
